@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" method="upgrade" group="j2store">
+	<name>Sadad Gateway for J2Store</name>
+	<description>PLG_J2STORE_SADAD</description>
+	<version>1.1</version>
+	<author>Developer: almaatech - sadad-psp</author>
+	<authorUrl>https://almaatech.ir</authorUrl>
+	<authorEmail>info@almaatech.ir</authorEmail>
+	<creationDate>November 2021</creationDate>
+	<copyright>Copyright (C) 2021 SADAD</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field name="sadad_merchant_id" type="text" size="100" label="شماره پذیرنده" description="PLG_J2STORE_SADAD_INFO_DESC"/>
+				<field name="sadad_terminal_id" type="text" size="100" label="شماره ترمینال" description="PLG_J2STORE_SADAD_INFO_DESC"/>
+				<field name="sadad_terminal_key" type="text" size="100" label="کلید تراکنش" description="PLG_J2STORE_SADAD_INFO_DESC"/>
+
+			</fieldset>
+		</fields>
+	</config>
+
+	<files>
+		<filename plugin="payment_sadad">payment_sadad.php</filename>
+		<filename>index.html</filename>
+		<folder>payment_sadad</folder>
+	</files>
+
+</extension>
