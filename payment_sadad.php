@@ -56,13 +56,9 @@ class plgJ2StorePayment_sadad extends J2StorePaymentPlugin
         $vars->display_name = 'پرداخت امن سداد';
         $vars->display_name = 'پرداخت امن سداد';
 
-//        $vars->merchant_id = $this->params->get('sadad_merchant_id', '');
-//        $vars->terminal_id = $this->params->get('sadad_terminal_id', '');
-//        $vars->terminal_key = $this->params->get('sadad_terminal_key', '');
-
-        $vars->merchant_id = '3161';
-        $vars->terminal_id = 'EPBynaaN';
-        $vars->terminal_key = 'OGZiM2NhMjM4MjQzNjVlNDI3ZTU2NGIy';
+        $vars->merchant_id = $this->params->get('sadad_merchant_id', '');
+        $vars->terminal_id = $this->params->get('sadad_terminal_id', '');
+        $vars->terminal_key = $this->params->get('sadad_terminal_key', '');
 
         if ($vars->merchant_id == NULL || $vars->merchant_id == ''
             || $vars->terminal_id == NULL || $vars->terminal_id == ''
@@ -85,8 +81,7 @@ class plgJ2StorePayment_sadad extends J2StorePaymentPlugin
                 'SignData' => $sign_data,
             );
 
-//            $result = $this->sadad_call_api('https://sadad.shaparak.ir/VPG/api/v0/Request/PaymentRequest', $parameters);
-            $result = $this->sadad_call_api('https://banktest.ir/gateway/melli/payment-request', $parameters);
+            $result = $this->sadad_call_api('https://sadad.shaparak.ir/VPG/api/v0/Request/PaymentRequest', $parameters);
 
             if ($result != false) {
                 if ($result->ResCode == 0) {
@@ -112,8 +107,7 @@ class plgJ2StorePayment_sadad extends J2StorePaymentPlugin
         F0FTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_j2store/tables');
         $orderpayment = F0FTable::getInstance('Order', 'J2StoreTable')->getClone();
 
-        //$terminal_key = $this->params->get('sadad_terminal_key', '');
-        $terminal_key = 'OGZiM2NhMjM4MjQzNjVlNDI3ZTU2NGIy';
+        $terminal_key = $this->params->get('sadad_terminal_key', '');
 
         $token = $_POST['Token'];
         $ResCode = $_POST['ResCode'];
@@ -134,8 +128,7 @@ class plgJ2StorePayment_sadad extends J2StorePaymentPlugin
                     'SignData' => $this->sadad_encrypt($token, $terminal_key),
                 );
 
-                //$result = $this->sadad_call_api('https://sadad.shaparak.ir/VPG/api/v0/Advice/Verify', $parameters);
-                $result = $this->sadad_call_api('https://banktest.ir/gateway/melli/verify', $parameters);
+                $result = $this->sadad_call_api('https://sadad.shaparak.ir/VPG/api/v0/Advice/Verify', $parameters);
 
                 if ($token != NULL && $ResCode != NULL) {
                     if ($result != false) {
